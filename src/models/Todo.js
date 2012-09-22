@@ -10,16 +10,12 @@ define(["backbone"],function(Backbone){
             'status':'active'
         },
     
-        initialize:function(data){
-            this.on("remove", function() {
-                this.destroy();
-            });
-        }       
-    });
+        initialize:function(data){}       
+    })
     
     return todo;
 
-});
+})
 
 
 

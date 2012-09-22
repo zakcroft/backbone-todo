@@ -13,8 +13,7 @@ define(['jquery',
             todoCallToAction:'Enter text',
     
             events:{
-                'click #main-text':'_clearSearchText',
-                'click button':'_emptyCollection'
+                'click #main-text':'_clearSearchText'
             },
 
             initialize:function (config) {  
@@ -54,20 +53,13 @@ define(['jquery',
                             wait: true
                         });                        
                     }
-                });
+                })
             },
             
             _update:function(model){
                 this.todos.localStorage.update(model);
             },
-            
-            _emptyCollection:function(){
-                var length = this.todos.length; 
-                for (var i = length - 1; i >= 0; i--) {
-                    this.todos.at(i).destroy();
-                }                                              
-            },
-                               
+                                           
             _setCallToAction:function(){
                 $(this.input,this.$el).val(this.todoCallToAction);
             },
@@ -76,8 +68,9 @@ define(['jquery',
                 $(this.input, this.$el).val('');
             } 
         
-        });   
-    });
+        })
+    
+    })
 
 
 

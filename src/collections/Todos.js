@@ -1,10 +1,8 @@
-define(['underscore','backbone-localStorage', 'models/Todo'], function(_, Backbone, Todo) {
+define(['underscore','backbone-localStorage'], function(_, Backbone) {
         
     var todos = Backbone.Collection.extend({
     
         type:"collections.Todos",
-        
-        model:Todo,
         
         localStorage: new Backbone.LocalStorage(window.store || "Todos"), 
     
@@ -13,10 +11,10 @@ define(['underscore','backbone-localStorage', 'models/Todo'], function(_, Backbo
             
         }
         
-    });
+    })
     
     return todos;
     
-});
+})
 
 

@@ -21,9 +21,9 @@ define([
                 });
              
             }       
-        });
+        })
         
         return router;
-    });
+    })
 
 

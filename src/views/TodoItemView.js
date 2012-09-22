@@ -21,8 +21,6 @@ define(['jquery',
             initialize: function() {
                 this.model.on( 'change:status', this.render, this );
                 this.model.on( 'change:text', this.render, this );
-                this.model.on( 'destroy', this.remove, this );
-
             },
 
             render : function () {
@@ -52,13 +50,9 @@ define(['jquery',
                 this.model.save( {
                     'status':'done'
                 });
-            },
-            
-            _remove:function(){
-                this.remove();
             }
             
             
-        });
+        })
     
-    });
+    })

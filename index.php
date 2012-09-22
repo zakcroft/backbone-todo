@@ -8,7 +8,7 @@
     <body>
 
         <section id="todo">
-            <button>Clear</button>
+            <!--button>Clear</button-->
             <div>Press Enter to save.</div>
             <div>Click cross when done.</div>
             <div>Double click text to edit.</div>
