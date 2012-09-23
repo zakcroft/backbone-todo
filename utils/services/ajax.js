@@ -1,6 +1,8 @@
 
 //////////////// GENERIC AJAX USED IF NOT USING BACKBONE SYNC  /////////////////
 
+// TODO rewrite errors calls before use  
+
 /**
  * Creates an ajax request object that can be used to make requests to a backend/API
  * 

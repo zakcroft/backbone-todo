@@ -15,4 +15,8 @@ grunt,
 grunt-require,
 npm
 
+Utils has a common interface which some more work with require.js relative paths within app. 
+
+
+
 

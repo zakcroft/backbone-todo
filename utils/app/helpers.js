@@ -1,3 +1,8 @@
+
+//TODO find a way to use this or 
+//
+//Better is to precompile all templates in build process
+
 define(['jquery', 'text!templates/todoList.html'],function($, template)
     {
         // use a promise here?

@@ -1,8 +1,9 @@
 define(['jquery',
     'backbone',
-    'views/TodoItemView'],
+    'views/TodoItemView',
+    'utils'],
 
-    function( $, Backbone, TodoItemView){
+    function( $, Backbone, TodoItemView, utils){
     
 
         return  Backbone.View.extend({
