@@ -1,6 +1,6 @@
 define(function(){ 
 
-    return  function(name){
+   var getUrlParamVal =  function(name){
         
         name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
         var regexS = "[\\?&]"+name+"=([^&#]*)";
@@ -12,5 +12,10 @@ define(function(){
             return results[1];
         
     }     
+    
+    return {
+        getUrlParamVal:getUrlParamVal
+    }
+    
 })
 

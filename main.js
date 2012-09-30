@@ -9,6 +9,20 @@
         //Note the usage of a prefix "remote" for the ID. 
         //So if remoteModule.js has a './something' module ID reference, it is resolved to 'remote/something' which then gets that above path applied to it.
         //https://github.com/jrburke/requirejs/issues/230
+        
+        //        TODO - sort out and understand relative path issues 
+        //        https://github.com/jrburke/requirejs/issues/276
+        //        https://github.com/jrburke/requirejs/issues/162
+        //        https://groups.google.com/forum/?fromgroups=#!topic/amd-implement/xF1BuikRPZ8
+        //        https://github.com/jrburke/requirejs/wiki/Requirejs-2.0-draft#wiki-mapconfig
+        //        https://github.com/amdjs/amdjs-api/wiki/AMD#wiki-define-id-notes
+        //        
+        //        map: {
+        //            '*': {
+        //                'utils': 'foo1.2'
+        //            }
+        //        },
+        
         baseUrl:'src',
         paths: {
             "jquery" : libsPath + 'jQuery-1.8.1',  
@@ -16,16 +30,17 @@
             "backbone" : libsPath + 'backbone_amd-0.9.2',
             "backbone-localStorage": libsPath + "local-storage",
             "text": libsPath + 'require-text',
-            "utils":"../utils/interface"
+            "utils":"../utils"
         }, 
-       // "packages": ["utils"],
+        // "packages": ["utils"],
         shim: {
             'backbone-localStorage': {
                 deps: ['backbone'],
                 exports: 'Backbone'
             }
-        }
-        //urlArgs: "bust=" +  (new Date()).getTime()	//cache-busting for development
+        },
+        
+        urlArgs: "bust=" +  (new Date()).getTime()	//cache-busting for development
     })
 
     require(["jquery","underscore","backbone", 'Router'], function($, _, Backbone,  Router) {

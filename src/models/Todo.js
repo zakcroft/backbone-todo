@@ -1,4 +1,6 @@
-define(["backbone"],function(Backbone){
+define(function(){
+    
+    var Backbone = require('backbone');
     
     var todo = Backbone.Model.extend({
     

@@ -1,8 +1,8 @@
 define(['jquery'],function($){
-        
+
     /** @param {Array} errsArr - an array of error strings **/
     /** @param {String} type - red, green, i.e the css colour for display **/
-        
+
     return function(errsArr, type){
            
         var createUl = function(errsArr) 

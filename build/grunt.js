@@ -24,7 +24,9 @@ module.exports = function(grunt) {
             baseUrl: '../src',
             mainConfigFile: '../src/BB.todos.js', // not relative to baseUrl
             name: "Router", // test specify the top level file for require
-            out:'../dist/out.min.js'
+            out:'../dist/out.min.js',
+            //logLevel: 0,
+            preserveLicenseComments: false
             //modules: [{name: 'main'}]
 
         },

@@ -1,4 +1,6 @@
-define(['jquery'],function($){
+define(function(){
+    
+    var $ = require('jquery');
                    
     return function(){
         var  alertTypes = ['red', 'green'];
