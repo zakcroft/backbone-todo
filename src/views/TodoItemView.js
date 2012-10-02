@@ -1,9 +1,9 @@
 define(function(require){
     
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
-    var template = require('text!templates/todoList.html');
+    var $ = require('jquery'),
+    _ = require('underscore'),
+    Backbone = require('backbone'),
+    template = require('text!templates/todoList.html');
  
     return  Backbone.View.extend({
 

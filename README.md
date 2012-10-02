@@ -1,6 +1,6 @@
-This is a work in progress. An exploration of JS tools.
+##This is a work in progress. An exploration of JS tools.
 
-A simple todo app using local storage.
+##A simple todo app using local storage.
 
 Using;
 
