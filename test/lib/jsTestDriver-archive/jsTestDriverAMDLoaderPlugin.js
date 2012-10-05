@@ -1,7 +1,7 @@
 (function() {
 
 	var loadSource = function(file, onSourceLoad) {
-		if (!file.fileSrc.match(/js-test/)) {
+		if (!file.fileSrc.match(/specs/)) {
 			return false;
 		}
 

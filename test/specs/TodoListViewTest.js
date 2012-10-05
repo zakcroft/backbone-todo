@@ -1,11 +1,4 @@
-define([
-    "collections/Todos",
-    "views/TodoListView"
-    ],
-
-    function( Todos, TodoListView){
-
-        describe("TodoListView", function(){ 
+ describe("TodoListView", function(){ 
             
             beforeEach(function() {
                 var todos = new Todos();
@@ -33,4 +26,3 @@ define([
         
             })  
         })
-    })

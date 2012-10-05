@@ -2,7 +2,7 @@
     //"use strict";
 
     var libsPath = '../lib/'; //libsPath relative to 'basePath'
-    var srcPath = 'src/'; //libsPath relative to 'basePath'
+
     
     require.config({  
         // module IDs are resolved relative to other modules IDs, not paths.

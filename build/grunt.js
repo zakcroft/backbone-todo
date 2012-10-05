@@ -1,7 +1,10 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-    
+    grunt.loadNpmTasks('grunt-contrib');
+    grunt.loadNpmTasks('grunt-requirejs');
+    grunt.loadNpmTasks('grunt-jasmine-task');
+  
     // Project configuration.
     grunt.initConfig({
         pkg: '../<json:package.json>',
@@ -22,11 +25,12 @@ module.exports = function(grunt) {
         requirejs: {
             //almond: true,
             baseUrl: '../src',
-            mainConfigFile: '../src/BB.todos.js', // not relative to baseUrl
-            name: "Router", // test specify the top level file for require
+            mainConfigFile: '../src/init.js', // not relative to baseUrl
+            //name: "init", // test specify the top level file for require
             out:'../dist/out.min.js',
             //logLevel: 0,
             preserveLicenseComments: false
+            
             //modules: [{name: 'main'}]
 
         },
@@ -35,6 +39,29 @@ module.exports = function(grunt) {
             files: '<config:lint.files>',
             tasks: 'lint qunit'
         },
+        
+        // jasmine testsuites
+        jasmine: {
+            files: ['test/specs/SpecRunner.html']
+        },
+        
+        //        //https://github.com/jasmine-contrib/grunt-jasmine-runner
+        //        jasmine : {                          
+        //            src : 'src/**/*.js',
+        //            specs : 'specs/**/*Spec.js',
+        //            helpers : 'specs/helpers/*.js',
+        //            timeout : 10000,
+        //            template : 'src/custom.tmpl',
+        //            junit : {
+        //                output : 'junit/'
+        //            },
+        //            phantomjs : {
+        //                'ignore-ssl-errors' : true
+        //            }
+        //        },
+        //        'jasmine-server' : {
+        //            browser : false
+        //        },
         
         jshint: {
             options: {
@@ -57,11 +84,12 @@ module.exports = function(grunt) {
         },
         uglify: {}
     });
-
-    grunt.loadNpmTasks('grunt-requirejs');
+  
     
     grunt.registerTask('default', 'lint requirejs');
     
-    grunt.registerTask('build', 'lint requirejs');
+    grunt.registerTask('build', 'lint jasmine requirejs');
+    
+    grunt.registerTask('test', 'jasmine');
 
 };
