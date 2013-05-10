@@ -17,7 +17,7 @@
         </section>
 
     </body>
-    <script data-main="main.js" src="lib/require-2.0.6.js"></script>
+    <script data-main="src/init.js" src="lib/require-2.0.6.js"></script>
 
 </html>
 
