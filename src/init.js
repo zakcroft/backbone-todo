@@ -3,13 +3,13 @@
 
     var libsPath = '../lib/'; //libsPath relative to 'basePath'
 
-    
-    require.config({  
+
+    require.config({
         // module IDs are resolved relative to other modules IDs, not paths.
         //Note the usage of a prefix "remote" for the ID. 
         //So if remoteModule.js has a './something' module ID reference, it is resolved to 'remote/something' which then gets that above path applied to it.
         //https://github.com/jrburke/requirejs/issues/230
-        
+
         //        TODO - sort out and understand relative path issues 
         //        https://github.com/jrburke/requirejs/issues/276
         //        https://github.com/jrburke/requirejs/issues/162
@@ -22,16 +22,16 @@
         //                'utils': 'foo1.2'
         //            }
         //        },
-        
+
         baseUrl:'src',
         paths: {
-            "jquery" : libsPath + 'jQuery-1.8.1',  
-            "underscore" : libsPath + 'underscore_amd-1.3.3',  
+            "jquery" : libsPath + 'jQuery-1.8.1',
+            "underscore" : libsPath + 'underscore_amd-1.3.3',
             "backbone" : libsPath + 'backbone_amd-0.9.2',
             "backbone-localStorage": libsPath + "local-storage",
             "text": libsPath + 'require-text',
             "utils":"../utils"
-        }, 
+        },
         // "packages": ["utils"],
         shim: {
             'backbone-localStorage': {
@@ -39,19 +39,23 @@
                 exports: 'Backbone'
             }
         },
-        
+
         urlArgs: "bust=" +  (new Date()).getTime()	//cache-busting for development
     })
 
-    require(["jquery","underscore","backbone", 'Router'], function($, _, Backbone,  Router) {
+    require(["jquery","underscore","backbone", 'Router', 'utils/es5-sham'], function($, _, Backbone,  Router) {
+
+           var j =
+
+
         $(function() {
             $.noConflict();
-            Backbone.noConflict();        
-            new Router();  
+            Backbone.noConflict();
+            new Router();
             Backbone.history.start();
-        });    
-    });  
-    
+        });
+    });
+
 })(require)
 
 
