@@ -1,4 +1,6 @@
- describe("TodoListView", function(){ 
+ describe("TodoListView", function(){
+
+            var todosFetchSpy = null;
             
             beforeEach(function() {
                 var todos = new Todos();
