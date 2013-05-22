@@ -19,7 +19,6 @@ define([
                 var todoListView = new TodoListView({
                     todos:todos
                 });
-             
             }       
         })
         

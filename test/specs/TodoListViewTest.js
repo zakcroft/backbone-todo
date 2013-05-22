@@ -1,30 +1,43 @@
- describe("TodoListView", function(){
+define([ 'collections/Todos',  'views/TodoListView'], function (Todos, TodoListView) {
 
-            var todosFetchSpy = null;
-            
-            beforeEach(function() {
-                var todos = new Todos();
-                todosFetchSpy = sinon.spy(todos, 'fetch' );
-                var view = new TodoListView({
-                    collection: todos
-                });
-            });
-        
-            afterEach(function() {
-                todos.fetch.restore()
-            });
-    
-    
-            describe("#initialize", function() {
-                
-                it("should fetch the todos", function() {
-                    expect(todosFetchSpy.called);
-                });
-        
 
-                it("should display error when campaign id is invalid", function(){
-        
-                    })
-        
-            })  
+    return describe("TodoListView", function () {
+        var todos = null;
+        var todosFetchStub = null;
+        var view = null;
+
+        beforeEach(function () {
+
+//          that.mockData = { title: 'Foo Bar', timestamp: new Date().getTime() };
+
+            todos = new Todos();
+            todosFetchStub = sinon.spy(todos, 'fetch');
+            view = new TodoListView({
+                todos: todos
+            });
+        });
+
+        afterEach(function () {
+            todos.fetch.restore();
+           // view.remove();
+
+        });
+
+        describe("#initialize", function () {
+
+            it("should fetch the todos", function () {
+                expect(todosFetchStub.calledOnce);
+
+            });
+            it("should thow error when fetching todos", function () {
+                expect(todosFetchStub.yieldsTo('error').calledOnce);
+
+            });
+
+            it("should _setCallToAction", function () {
+                expect(view.$el.find(view.input).val()).toEqual(view.todoCallToAction);
+            });
         })
+    })
+
+})

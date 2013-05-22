@@ -26,33 +26,39 @@
         baseUrl:'src',
         paths: {
             "jquery" : libsPath + 'jQuery-1.8.1',
-            "underscore" : libsPath + 'underscore_amd-1.3.3',
-            "backbone" : libsPath + 'backbone_amd-0.9.2',
+            "underscore" : libsPath + 'underscore_amd-1.4.4',
+            "backbone" : libsPath + 'backbone_amd-1.0.0',
             "backbone-localStorage": libsPath + "local-storage",
             "text": libsPath + 'require-text',
             "utils":"../utils"
         },
         // "packages": ["utils"],
         shim: {
+
+            'underscore': {
+                exports: '_'
+            },
+            'backbone': {
+                deps: ['underscore'],
+                exports: 'Backbone'
+            },
             'backbone-localStorage': {
                 deps: ['backbone'],
                 exports: 'Backbone'
             }
-        },
+        }
 
-        urlArgs: "bust=" +  (new Date()).getTime()	//cache-busting for development
+       // urlArgs: "bust=" +  (new Date()).getTime()	//cache-busting for development
     })
 
     require(["jquery","underscore","backbone", 'Router', 'utils/es5-sham'], function($, _, Backbone,  Router) {
-
-           var j =
 
 
         $(function() {
             $.noConflict();
             Backbone.noConflict();
             new Router();
-            Backbone.history.start();
+            Backbone.history.start( );
         });
     });
 

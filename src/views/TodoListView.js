@@ -1,75 +1,91 @@
-define(function(require){
-    
-    var $ = require('jquery');
-    var Backbone = require('backbone');
-    var TodoItemView = require('views/TodoItemView');
-    var string = require('utils/core/string');
+define(function (require) {
+
+    var $ = require('jquery'),
+        Backbone = require('backbone'),
+        TodoItemView = require('views/TodoItemView'),
+        string = require('utils/core/string'),
+        template = require('text!templates/listLayout.html');
 
     return  Backbone.View.extend({
-          
-        el:'#todo',
-            
-        input:'input#main-text',
-        todoCallToAction:'Enter text',
-    
-        events:{
-            'click #main-text':'_clearSearchText'
+
+        el: '#todo',
+
+        template: _.template(template),
+
+        input: 'input#main-text',
+        todoCallToAction: 'Enter text',
+
+        events: {
+            'click #main-text': '_clearSearchText'
         },
 
-        initialize:function (config) {  
+        initialize: function (config) {
+            var _self = this;
             this.todos = config.todos;
-            this.todos.on( 'reset', this._renderAll, this );
-            this.todos.on( 'add', this._renderOne, this );                
-            this.todos.fetch();                  
+            this.todos.fetch({
+                success:function(coll, res, opt){
+                    _self.render()._renderAll().$el.show();
+                },
+                error:function(coll, res, opt){
+
+                }
+            });
+            this.todos.on('add', this._renderOne, this);
             this._setCallToAction();
-            this._attachHandlers();  
+            this._attachHandlers();
         },
-        
-        _renderAll:function(){
+
+        render: function () {
+            this.$el.html(this.template());
+            return this;
+        },
+
+        _renderAll: function () {
             var _self = this;
             $('ul', this.$el).empty();
-            this.todos.each(function(model){
+            this.todos.each(function (model) {
                 _self._renderOne(model);
             });
+            return this;
         },
-            
-        _renderOne:function(model){               
-            $('ul',this.$el).append(this._createTodoItemView(model).render().el); 
+
+        _renderOne: function (model) {
+            $('ul', this.$el).append(this._createTodoItemView(model).render().el);
         },
-                       
-        _createTodoItemView:function(model){
+
+        _createTodoItemView: function (model) {
             return new TodoItemView({
-                model:model
+                model: model
             });
         },
-                       
-        _attachHandlers:function(){
+
+        _attachHandlers: function () {
             var _self = this;
-            $(this.input, this.$el).keypress(function(e){
-                if(e.which === 13){
+            $(this.input, this.$el).keypress(function (e) {
+                if (e.which === 13) {
                     _self.todos.create({
-                        'text':$(this).val(),
+                        'text': $(this).val(),
                         'status': 'active',
                         wait: true
-                    });                        
+                    });
                 }
             })
         },
-            
-        _update:function(model){
+
+        _update: function (model) {
             this.todos.localStorage.update(model);
         },
-                                           
-        _setCallToAction:function(){
-            $(this.input,this.$el).val(this.todoCallToAction);
+
+        _setCallToAction: function () {
+            $(this.input, this.$el).val(this.todoCallToAction);
         },
-        
-        _clearSearchText:function(){
+
+        _clearSearchText: function () {
             $(this.input, this.$el).val('');
-        } 
-        
+        }
+
     })
-    
+
 })
 
 
