@@ -27,7 +27,7 @@ define(function (require) {
                     _self.render()._renderAll().$el.show();
                 },
                 error:function(coll, res, opt){
-
+                   throw new Error('fetching todos failed');
                 }
             });
             this.todos.on('add', this._renderOne, this);

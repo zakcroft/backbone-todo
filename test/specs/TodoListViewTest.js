@@ -1,43 +1,70 @@
-define([ 'collections/Todos',  'views/TodoListView'], function (Todos, TodoListView) {
+define([ 'collections/Todos', 'views/TodoListView', 'views/TodoItemView'], function (Todos, TodoListView, TodoItemView) {
 
 
     return describe("TodoListView", function () {
-        var todos = null;
-        var todosFetchStub = null;
-        var view = null;
 
         beforeEach(function () {
-
-//          that.mockData = { title: 'Foo Bar', timestamp: new Date().getTime() };
-
-            todos = new Todos();
-            todosFetchStub = sinon.spy(todos, 'fetch');
-            view = new TodoListView({
-                todos: todos
+            this.todos = new Todos();
+            this.todosFetchStub = sinon.spy(this.todos, 'fetch')  //.returns(null);
+            this.view = new TodoListView({
+                todos: this.todos
             });
         });
 
         afterEach(function () {
-            todos.fetch.restore();
-           // view.remove();
-
+            localStorage.clear();
+            this.todos.fetch.restore();
         });
 
-        describe("#initialize", function () {
+        describe("initialize", function () {
 
             it("should fetch the todos", function () {
-                expect(todosFetchStub.calledOnce);
-
+                expect(this.todosFetchStub.calledOnce).toBeTruthy();
             });
-            it("should thow error when fetching todos", function () {
-                expect(todosFetchStub.yieldsTo('error').calledOnce);
+
+            it("should throw error when not fetching todos", function () {
+//                  this.todosFetchStub.yieldTo('error');
+//                  expect(this.todosFetchStub.threw()).toBeTruthy();
+
+                //expect(this.todosFetchStub.yieldTo('error')).toThrow(new Error('fetching todos failed'));
 
             });
 
             it("should _setCallToAction", function () {
-                expect(view.$el.find(view.input).val()).toEqual(view.todoCallToAction);
+                expect(this.view.$el.find(this.view.input).val()).toEqual(this.view.todoCallToAction);
             });
         })
+
+        describe("_createTodoItemView", function () {
+
+
+            it("should create a Todo Item view", function () {
+                var spy = sinon.spy(this.view, '_createTodoItemView');
+
+//                var model = this.todos.create({
+//                    'text': 'test model',
+//                    'status': 'active',
+//                    'wait': true
+//                });
+
+                var model = new Backbone.Model({
+                    'text': 'test model',
+                    'status': 'active',
+                    'wait': true
+                })
+
+                spy(model);
+                expect(spy.calledOnce).toBeTruthy();
+                expect(spy.returned(sinon.match.instanceOf(TodoItemView))).toBeTruthy();
+
+
+                //expect(spy.calledOn(this.view)).toBeTruthy();
+                //expect(spy.calledWith(model)).toBeTruthy();
+
+            });
+
+        })
+
     })
 
 })
