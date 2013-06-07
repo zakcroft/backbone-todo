@@ -37,10 +37,10 @@ define(function (require) {
         _save: function (e) {
             var _self = this;
             var text = $('input', this.$el).hide().val();
-            this.model.save({
+            this.model.save(
+                {
                     'text': text
                 },
-
                 {
                     success: function () {
                         $('.display', _self.$el).show();

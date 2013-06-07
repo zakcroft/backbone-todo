@@ -8,7 +8,7 @@ define(function (require) {
 
     return  Backbone.View.extend({
 
-        el: '#todo',
+        tagName: 'div',
 
         template: _.template(template),
 
@@ -23,11 +23,11 @@ define(function (require) {
             var _self = this;
             this.todos = config.todos;
             this.todos.fetch({
-                success:function(coll, res, opt){
+                success: function (coll, res, opt) {
                     _self.render()._renderAll().$el.show();
                 },
-                error:function(coll, res, opt){
-                   throw new Error('fetching todos failed');
+                error: function (coll, res, opt) {
+                    throw new Error('fetching todos failed');
                 }
             });
             this.todos.on('add', this._renderOne, this);
@@ -36,7 +36,7 @@ define(function (require) {
         },
 
         render: function () {
-            this.$el.html(this.template());
+            $('#todo').append(this.$el.html(this.template())).show();
             return this;
         },
 
@@ -63,13 +63,19 @@ define(function (require) {
             var _self = this;
             $(this.input, this.$el).keypress(function (e) {
                 if (e.which === 13) {
-                    _self.todos.create({
-                        'text': $(this).val(),
-                        'status': 'active',
-                        wait: true
-                    });
+                    _self._create($(this).val());
                 }
             })
+        },
+
+        _create: function (text) {
+            this.todos.create({
+                    'text': text,
+                    'status': 'active'
+                },
+                {
+                    'wait': true
+                })
         },
 
         _update: function (model) {
