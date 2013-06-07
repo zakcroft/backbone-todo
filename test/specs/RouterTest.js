@@ -1,6 +1,6 @@
 define(['jquery','backbone',"collections/Todos","views/TodoListView"], function($, Backbone, Todos, TodoListView){
 
-    return describe("TodoListView", function () {
+    return describe("Router", function () {
 
         beforeEach(function () {
 
@@ -16,7 +16,7 @@ define(['jquery','backbone',"collections/Todos","views/TodoListView"], function(
             this.todos.fetch.restore();
         });
 
-        describe("#indexController", function () {
+        describe("indexController", function () {
 
             it("should fetch the todos", function () {
                 expect(this.todosFetchStub.calledOnce).toBeTruthy();
