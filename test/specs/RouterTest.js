@@ -1,34 +1,55 @@
-define(['jquery','backbone',"collections/Todos","views/TodoListView"], function($, Backbone, Todos, TodoListView){
+define(['Router', 'jquery','backbone',"collections/Todos","views/TodoListView"], function(Router, $, Backbone, Todos, TodoListView){
 
     return describe("Router", function () {
 
-        beforeEach(function () {
 
-            this.todos = new Todos();
-            this.todosFetchStub = sinon.stub(this.todos, 'fetch')  //.returns(null);
 
-            this.view = new TodoListView({
-                todos: this.todos
+            beforeEach(function() {
+
+                this.collection = new Backbone.Collection();
+
+
+                this.t = new Todos();
+
+                //this.todoListViewStub = sinon.stub(TodoListView, 'constructor').returns(new Backbone.View());
+
+                this.todoListViewStub = sinon.stub(TodoListView, 'constructor').returns(new Backbone.View());
+                this.router = new Router();
+
+                //this.todosCollectionStub = sinon.stub(Todos).returns(this.collection);
+            });
+
+            afterEach(function() {
+                this.todoListViewStub.restore();
+
+            });
+
+
+        describe("Index handler", function() {
+
+            describe("when no Todo list exists", function() {
+
+                beforeEach(function() {
+
+                   this.router.indexController();
+                });
+
+                it("creates a Todo list collection", function() {
+                      expect(this.todoListViewStub.called).toBeTruthy();
+//                    expect(this.todosCollectionStub)
+//                        .toHaveBeenCalledWithExactly();
+                });
+
+                //it("creates a Todo list view", function() {
+//                    expect(this.todoListViewStub).toHaveBeenCalledOnce();
+//                    expect(this.todoListViewStub)
+//                        .toHaveBeenCalledWith({
+//                            collection: this.collection
+//                        });
+               // });
+
             });
         });
-
-        afterEach(function () {
-            this.todos.fetch.restore();
-        });
-
-        describe("indexController", function () {
-
-            it("should fetch the todos", function () {
-                expect(this.todosFetchStub.calledOnce).toBeTruthy();
-            });
-
-            it("should throw error when not fetching todos", function () {
-                //this.todosFetchStub.yieldTo('error');
-
-                //expect(this.todosFetchStub.threw()).toBeTruthy();
-
-            });
-        })
     });
 });
 

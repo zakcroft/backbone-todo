@@ -44,14 +44,10 @@ define([ 'collections/Todos', 'views/TodoListView', 'views/TodoItemView'], funct
                     'text': 'test model',
                     'status': 'active'
                 })
-
                 spy(model);
 
                 expect(spy.calledOnce).toBeTruthy();
                 expect(spy.returned(sinon.match.instanceOf(TodoItemView))).toBeTruthy();
-                //expect(spy.calledOn(this.view)).toBeTruthy();
-                //expect(spy.calledWith(model)).toBeTruthy();
-
             });
 
         })
