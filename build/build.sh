@@ -1,4 +1,6 @@
-# linux # 
+ #!/usr/bin/env sh
+
+# linux #
 
 #to use just requires r.js
 
