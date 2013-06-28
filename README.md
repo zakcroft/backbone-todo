@@ -5,10 +5,9 @@ Using;
 backbone,
 underscore,
 jquery,
-require/almond
+require
 jasmine,
 sinon,
-jstestdriver (might not work with require)?
 grunt,
 grunt-require,
 npm
