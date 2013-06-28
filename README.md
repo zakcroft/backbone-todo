@@ -1,5 +1,4 @@
-
-##A simple todo app using local storage.
+##A Backbone todo app using local storage.
 
 Using;
 
